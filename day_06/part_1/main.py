@@ -12,9 +12,9 @@ def next_step(data: dict) -> dict:
     return next_data
 
 
-def main(generation_count: int = 80) -> None:
-    with open('input.txt') as f:
-        data = Counter(map(int, f.read().split(',')))
+def main(generation_count: int = 80, input_file: str = "input.txt") -> None:
+    with open(input_file) as f:
+        data = Counter(map(int, f.read().split(",")))
 
     for _ in range(generation_count):
         data = next_step(data)
@@ -22,5 +22,5 @@ def main(generation_count: int = 80) -> None:
     print(sum(data.values()))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fire.Fire(main)

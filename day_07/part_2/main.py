@@ -10,9 +10,9 @@ def calculate_cost(data: np.ndarray, target_position: int) -> float:
     return float(np.sum(costs))
 
 
-def main() -> None:
-    with open('input.txt') as f:
-        data = np.array(f.read().split(','), dtype=int)
+def main(input_file: str = "input.txt") -> None:
+    with open(input_file) as f:
+        data = np.array(f.read().split(","), dtype=int)
 
     min_pos = int(np.mean(data))
     cost = calculate_cost(data, min_pos)
@@ -26,5 +26,5 @@ def main() -> None:
     print(np.argmin(costs))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fire.Fire(main)

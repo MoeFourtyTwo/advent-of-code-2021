@@ -5,8 +5,8 @@ import fire
 import numpy as np
 
 
-def main():
-    with open('input.txt') as f:
+def main(input_file: str = "input.txt") -> None:
+    with open(input_file) as f:
         data = np.array([list(x) for x in f.read().splitlines()]).astype(int)
 
     sums = np.sum(data, axis=0)
@@ -18,5 +18,5 @@ def main():
     print(gamma * epsilon)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fire.Fire(main)

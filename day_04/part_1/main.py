@@ -7,7 +7,9 @@ import numpy as np
 @dataclasses.dataclass
 class Board:
     values: np.ndarray
-    crossed_out: np.ndarray = dataclasses.field(default_factory=lambda: np.zeros(shape=(5, 5), dtype=bool))
+    crossed_out: np.ndarray = dataclasses.field(
+        default_factory=lambda: np.zeros(shape=(5, 5), dtype=bool)
+    )
 
     def has_won(self) -> bool:
         for i in range(5):
@@ -25,10 +27,12 @@ class Board:
         return int(np.sum(self.values[~self.crossed_out], axis=None))
 
 
-def main():
-    with open('input.txt') as f:
+def main(input_file: str = "input.txt") -> None:
+    with open(input_file) as f:
         draws = list(map(int, f.readline().split(",")))
-        lines = [np.array(line.split()).astype(int) for line in f.readlines() if line.strip()]
+        lines = [
+            np.array(line.split()).astype(int) for line in f.readlines() if line.strip()
+        ]
 
         boards = []
 
@@ -44,5 +48,5 @@ def main():
                 return
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fire.Fire(main)

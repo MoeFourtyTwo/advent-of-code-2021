@@ -2,8 +2,8 @@ import fire
 import numpy as np
 
 
-def main():
-    with open('input.txt') as f:
+def main(input_file: str = "input.txt") -> None:
+    with open(input_file) as f:
         data = [int(x) for x in f.read().splitlines()]
 
     array = np.array(data)
@@ -13,5 +13,5 @@ def main():
     print(count)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fire.Fire(main)

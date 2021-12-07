@@ -1,8 +1,8 @@
 import fire
 
 
-def main():
-    with open('input.txt') as f:
+def main(input_file: str = "input.txt") -> None:
+    with open(input_file) as f:
         data = [x.split() for x in f.read().splitlines()]
 
     horizontal_pos = 0
@@ -11,11 +11,11 @@ def main():
 
     for command, value in data:
         value = int(value)
-        if command == 'up':
+        if command == "up":
             aim -= value
-        elif command == 'down':
+        elif command == "down":
             aim += value
-        elif command == 'forward':
+        elif command == "forward":
             horizontal_pos += value
             depth += aim * value
         else:
@@ -24,5 +24,5 @@ def main():
     print(horizontal_pos * depth)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fire.Fire(main)

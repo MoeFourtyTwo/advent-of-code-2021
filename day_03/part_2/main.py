@@ -5,8 +5,8 @@ import fire
 import numpy as np
 
 
-def main():
-    with open('input.txt') as f:
+def main(input_file: str = "input.txt") -> None:
+    with open(input_file) as f:
         source_data = np.array([list(x) for x in f.read().splitlines()]).astype(int)
 
     data = source_data.copy()
@@ -16,7 +16,7 @@ def main():
 
         value = int(one_count >= zero_count)
 
-        data = data[data[:, col_index] == value , :]
+        data = data[data[:, col_index] == value, :]
 
         if len(data) == 1:
             break
@@ -31,7 +31,7 @@ def main():
 
         value = int(zero_count > one_count)
 
-        data = data[data[:, col_index] == value , :]
+        data = data[data[:, col_index] == value, :]
 
         if len(data) == 1:
             break
@@ -42,5 +42,5 @@ def main():
     print(oxygen_rating * co2_rating)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fire.Fire(main)

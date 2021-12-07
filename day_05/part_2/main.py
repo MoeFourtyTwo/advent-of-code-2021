@@ -19,7 +19,9 @@ class Line:
 
     @staticmethod
     def parse_row(line: str) -> "Line":
-        point_1, point_2 = [tuple(map(int, point.split(","))) for point in line.split(" -> ")]
+        point_1, point_2 = [
+            tuple(map(int, point.split(","))) for point in line.split(" -> ")
+        ]
         return Line(
             point_1=Point(*point_1),
             point_2=Point(*point_2),
@@ -35,10 +37,14 @@ class Line:
         return self.point_1.x - self.point_2.x == -(self.point_1.y - self.point_2.y)
 
     def draw(self, canvas: np.ndarray) -> None:
-        x_min, x_max = min(self.point_1.x, self.point_2.x), max(self.point_1.x, self.point_2.x)
-        y_min, y_max = min(self.point_1.y, self.point_2.y), max(self.point_1.y, self.point_2.y)
+        x_min, x_max = min(self.point_1.x, self.point_2.x), max(
+            self.point_1.x, self.point_2.x
+        )
+        y_min, y_max = min(self.point_1.y, self.point_2.y), max(
+            self.point_1.y, self.point_2.y
+        )
         if self.is_horizontal_or_vertical():
-            canvas[x_min:x_max + 1, y_min:y_max + 1] += 1
+            canvas[x_min : x_max + 1, y_min : y_max + 1] += 1
         elif self.is_45_degrees():
             for i in range(x_max - x_min + 1):
                 canvas[x_min + i, y_min + i] += 1
@@ -55,11 +61,17 @@ class Line:
         return max(self.point_1.y, self.point_2.y)
 
 
-def main(plot: bool = False) -> None:
-    with open('input.txt') as f:
+def main(plot: bool = False, input_file: str = "input.txt") -> None:
+    with open(input_file) as f:
         lines = list(map(Line.parse_row, f.readlines()))
 
-    lines = [line for line in lines if line.is_horizontal_or_vertical() or line.is_45_degrees() or line.is_135_degrees()]
+    lines = [
+        line
+        for line in lines
+        if line.is_horizontal_or_vertical()
+        or line.is_45_degrees()
+        or line.is_135_degrees()
+    ]
 
     dim_x = max(line.max_x() for line in lines)
     dim_y = max(line.max_y() for line in lines)
@@ -78,5 +90,5 @@ def main(plot: bool = False) -> None:
     print(intersection_count)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fire.Fire(main)

@@ -1,8 +1,8 @@
 import fire
 
 
-def main():
-    with open('input.txt') as f:
+def main(input_file: str = "input.txt") -> None:
+    with open(input_file) as f:
         data = [int(x) for x in f.read().splitlines()]
 
     count = sum(cur > prev for prev, cur in zip(data[:-1], data[1:]))
@@ -10,5 +10,5 @@ def main():
     print(count)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fire.Fire(main)
