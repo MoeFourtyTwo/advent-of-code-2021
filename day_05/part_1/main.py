@@ -17,9 +17,7 @@ class Line:
 
     @staticmethod
     def parse_row(line: str) -> "Line":
-        point_1, point_2 = [
-            tuple(map(int, point.split(","))) for point in line.split(" -> ")
-        ]
+        point_1, point_2 = [tuple(map(int, point.split(","))) for point in line.split(" -> ")]
         return Line(
             point_1=Point(*point_1),
             point_2=Point(*point_2),
@@ -30,12 +28,8 @@ class Line:
 
     def draw(self, canvas: np.ndarray) -> None:
         if self.is_horizontal_or_vertical():
-            x_min, x_max = min(self.point_1.x, self.point_2.x), max(
-                self.point_1.x, self.point_2.x
-            )
-            y_min, y_max = min(self.point_1.y, self.point_2.y), max(
-                self.point_1.y, self.point_2.y
-            )
+            x_min, x_max = min(self.point_1.x, self.point_2.x), max(self.point_1.x, self.point_2.x)
+            y_min, y_max = min(self.point_1.y, self.point_2.y), max(self.point_1.y, self.point_2.y)
             canvas[x_min : x_max + 1, y_min : y_max + 1] += 1
         else:
             raise NotImplementedError

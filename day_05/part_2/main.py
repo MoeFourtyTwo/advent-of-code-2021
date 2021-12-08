@@ -19,9 +19,7 @@ class Line:
 
     @staticmethod
     def parse_row(line: str) -> "Line":
-        point_1, point_2 = [
-            tuple(map(int, point.split(","))) for point in line.split(" -> ")
-        ]
+        point_1, point_2 = [tuple(map(int, point.split(","))) for point in line.split(" -> ")]
         return Line(
             point_1=Point(*point_1),
             point_2=Point(*point_2),
@@ -37,12 +35,8 @@ class Line:
         return self.point_1.x - self.point_2.x == -(self.point_1.y - self.point_2.y)
 
     def draw(self, canvas: np.ndarray) -> None:
-        x_min, x_max = min(self.point_1.x, self.point_2.x), max(
-            self.point_1.x, self.point_2.x
-        )
-        y_min, y_max = min(self.point_1.y, self.point_2.y), max(
-            self.point_1.y, self.point_2.y
-        )
+        x_min, x_max = min(self.point_1.x, self.point_2.x), max(self.point_1.x, self.point_2.x)
+        y_min, y_max = min(self.point_1.y, self.point_2.y), max(self.point_1.y, self.point_2.y)
         if self.is_horizontal_or_vertical():
             canvas[x_min : x_max + 1, y_min : y_max + 1] += 1
         elif self.is_45_degrees():
@@ -66,11 +60,7 @@ def main(plot: bool = False, input_file: str = "input.txt") -> None:
         lines = list(map(Line.parse_row, f.readlines()))
 
     lines = [
-        line
-        for line in lines
-        if line.is_horizontal_or_vertical()
-        or line.is_45_degrees()
-        or line.is_135_degrees()
+        line for line in lines if line.is_horizontal_or_vertical() or line.is_45_degrees() or line.is_135_degrees()
     ]
 
     dim_x = max(line.max_x() for line in lines)
