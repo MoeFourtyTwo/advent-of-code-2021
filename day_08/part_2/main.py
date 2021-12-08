@@ -23,8 +23,8 @@ NUMBER_MAPPING = {
     )
 }
 FILTER_MAP = {
-    "a": ({2, 4}, 8),
-    "b": (set(), 6),
+    "a": ({2, 4}, 8),  # This means that if we remove codes with lengths 2 or 4, the letter "a" will have a count of 8
+    "b": (set(), 6),  # This means that if we remove no codes, the letter "b" will have a count of 6
     "c": ({5}, 6),
     "d": ({4}, 6),
     "e": (set(), 4),
