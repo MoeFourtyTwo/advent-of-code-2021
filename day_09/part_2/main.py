@@ -1,6 +1,7 @@
 import dataclasses
 import functools
 import operator
+import timeit
 
 import fire
 import numpy as np
@@ -77,4 +78,4 @@ def main(input_file: str = "input.txt") -> None:
 
 
 if __name__ == "__main__":
-    fire.Fire(main)
+    print(timeit.Timer(lambda: fire.Fire(main)).timeit(1))

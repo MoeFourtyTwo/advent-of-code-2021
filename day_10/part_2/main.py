@@ -1,3 +1,5 @@
+import timeit
+
 import fire
 
 POINT_MAP = {c: i for i, c in enumerate(")]}>", start=1)}
@@ -51,4 +53,4 @@ def main(input_file: str = "input.txt") -> None:
 
 
 if __name__ == "__main__":
-    fire.Fire(main)
+    print(timeit.Timer(lambda: fire.Fire(main)).timeit(1))
