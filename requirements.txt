@@ -1,6 +1,7 @@
 fire==0.4.0
 numpy==1.21.4
 matplotlib==3.5.0
+networkx==2.6.3
 pytest
 tqdm
 black
