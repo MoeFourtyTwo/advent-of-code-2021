@@ -5,3 +5,5 @@ networkx==2.6.3
 pytest
 tqdm
 black
+pipe
+joblib
