@@ -23,8 +23,6 @@ def main(input_file: str = "input.txt", plot: bool = False, iterations: int = 2)
     with cm:
         if plot:
             plt.axis("off")
-
-        if plot:
             plt_image = plt.imshow(image, cmap="gray")
             plt.waitforbuttonpress()
 
@@ -39,10 +37,6 @@ def main(input_file: str = "input.txt", plot: bool = False, iterations: int = 2)
         print(f"Total lights: {np.sum(image, axis=None)}")
         if plot:
             plt.waitforbuttonpress()
-
-
-def view_to_dec(view: np.ndarray) -> int:
-    return int("".join(map(str, list(view.flatten()))), 2)
 
 
 def iterate(image: np.ndarray, image_enhancement_algorithm: np.ndarray, background: int = 0) -> tuple[np.ndarray, int]:
