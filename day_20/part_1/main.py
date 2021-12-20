@@ -15,12 +15,7 @@ KERNEL = np.array([[1, 2, 4], [8, 16, 32], [64, 128, 256]])
 def main(input_file: str = "input.txt", plot: bool = False, iterations: int = 2) -> None:
     image_enhancement_algorithm, image = parse_input(input_file)
 
-    if plot:
-        cm = plt.ion()
-    else:
-        cm = nullcontext()
-
-    with cm:
+    with plt.ion() if plot else nullcontext():
         if plot:
             plt.axis("off")
             plt_image = plt.imshow(image, cmap="gray")
