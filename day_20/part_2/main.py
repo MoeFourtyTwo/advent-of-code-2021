@@ -1,8 +1,6 @@
 from __future__ import annotations
 
-import contextlib
 import timeit
-from collections import Callable
 from contextlib import nullcontext
 from io import StringIO
 
