@@ -11,9 +11,6 @@ from scipy.ndimage import generic_filter
 
 
 def move(array: np.ndarray) -> int:
-    # 0 1 2
-    # 3 4 5
-    # 6 7 8
     if array[4] == 0:
         if array[3] == 1:
             return 1
