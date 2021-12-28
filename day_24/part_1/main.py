@@ -3,11 +3,10 @@ from __future__ import annotations
 import timeit
 
 import fire
-from tqdm import tqdm
-import numpy as np
 import pandas as pd
+from tqdm import tqdm
 
-# @profile
+
 def main(input_file: str = "input.txt", search_max: bool = True) -> None:
     instructions = parse_instructions(input_file)
     alus = pd.DataFrame(
