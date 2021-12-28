@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import timeit
 from contextlib import nullcontext
 from io import StringIO
@@ -20,11 +18,14 @@ def move(array: np.ndarray) -> int:
             return 0
     elif array[4] == 1:
         if array[5] == 0:
-            return 0
+            if array[1] == 2:
+                return 2
+            else:
+                return 0
         else:
             return 1
     elif array[4] == 2:
-        if array[7] == 0 and array[6] != 1:
+        if array[7] == 0 and array[6] != 1 or array[7] == 1 and array[8] == 0:
             return 0
         else:
             return 2
@@ -43,14 +44,14 @@ def main(input_file: str = "input.txt", plot: bool = False) -> None:
             plt.axis("off")
             display = plt.imshow(current_step, cmap="magma")
         while True:
+            iterations += 1
             next_step = generic_filter(current_step, move, size=3, mode="wrap")
             if np.array_equal(next_step, current_step):
                 break
             current_step = next_step
-            iterations += 1
             if plot:
                 display.set_data(current_step)
-                plt.pause(0.1)
+                plt.waitforbuttonpress()
         if plot:
             plt.waitforbuttonpress()
         print(f"{iterations=} ")
